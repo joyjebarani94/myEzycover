@@ -1,0 +1,207 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div>
+                                <ntech-lable label="Parent Page" mandatory="true"></ntech-lable>
+                            </div>
+                            <div class="row">
+                                <div class="col-10">
+                                    <select class="form-control" [(ngModel)]="inputvalue" (change)="getSubpages()">
+                                        <option value="S" selected>Select</option>
+                                        <option [value]="item.ntSno" *ngFor="let item of ntechpage1">
+                                            {{item.ntPagename}}
+                                    </select>
+                                </div>
+                                <div class="col-2">
+                                    <ntech-button attrclass="btn btn-primary" label="New"
+                                        (click)="openNewModel(content)"></ntech-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div>
+                                <ntech-lable label="Sub Pages" mandatory="false"></ntech-lable>
+                            </div>
+                            <div *ngIf="ntechsubpage.length == 0">
+                                <div style="align-content: center;">
+                                    <ntech-lable align="center" color="red" label="No data found" mandatory="false">
+                                    </ntech-lable>
+                                </div>
+                            </div>
+                            <div *ngIf="ntechsubpage.length > 0">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Sub Sr.No</th>
+                                            <th>Page Name</th>
+                                            <th>Page Info</th>
+                                            <th>Page Category</th>
+                                            <th>Page Device</th>
+                                            <th>Page Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of ntechsubpage;  let i=index">
+                                            <td>{{item.ntSubSno}}</td>
+                                            <td>{{item.ntPagename}}</td>
+                                            <td>{{item.ntPageinfo}}</td>
+                                            <td>{{item.ntPageCategory}}</td>
+                                            <td>
+                                                <div [ngSwitch]="item.ntPageDevice">
+                                                    <div *ngSwitchCase=" '1' ">Web User</div>
+                                                    <div *ngSwitchCase=" '2' ">Mobile User</div>
+                                                    <div *ngSwitchCase=" '3' ">Both</div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div [ngSwitch]="item.ntActive">
+                                                    <div *ngSwitchCase=" '1' ">Active</div>
+                                                    <div *ngSwitchCase=" '2' ">In-Active</div>
+                                                </div>
+                                            </td>
+                                            <td>
+
+                                                <i class="fa fa-pencil" (click)="openEditModel(content,item,i)"></i>
+                                                &nbsp;
+                                                <i class="fa fa-trash" (click)="deleteRecord(item)"></i>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Page Creation</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        <ntech-textbox mandatory="true" label="Page Name" attrclass="form-control" name="ntPagename"
+                            disabled="false" placeholder="Page Name" [(ngModel)]="currentPage.ntPagename">
+                        </ntech-textbox>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        <ntech-selectbox mandatory="true" label="Status" attrclass="form-control" ntechkey="N0003"
+                            [(ngModel)]="currentPage.ntActive" name="ntActive">
+                        </ntech-selectbox>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        <ntech-textbox mandatory="true" label="Router Name" attrclass="form-control" name="ntRouterName"
+                            disabled="false" placeholder="ntRouterName" [(ngModel)]="currentPage.ntRouterName">
+                        </ntech-textbox>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        <ntech-textbox mandatory="true" label="Page Icon" attrclass="form-control" name="ntPageIcon"
+                            disabled="false" placeholder="Page Icon" [(ngModel)]="currentPage.ntPageIcon">
+                        </ntech-textbox>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        <ntech-selectbox mandatory="true" label="Page Status" attrclass="form-control" ntechkey="N0002"
+                            [(ngModel)]="currentPage.ntPageDevice" name="ntPagestatus">
+                        </ntech-selectbox>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        <ntech-textbox mandatory="true" label="Page Category" attrclass="form-control"
+                            name="ntPageCategory" disabled="false" placeholder="Page Category"
+                            [(ngModel)]="currentPage.ntPageCategory">
+                        </ntech-textbox>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+
+                        <ntech-textarea mandatory="false" label="Page Info" attrclass="form-control" name="orgname"
+                            disabled="false" placeholder="Page Info" [(ngModel)]="currentPage.ntPageinfo">
+                        </ntech-textarea>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <div *ngIf="action == 'N' ">
+            <ntech-button attrclass="btn btn-primary" label="Save" (click)="savePages()">
+            </ntech-button>
+        </div>
+        <div *ngIf="action == 'U' ">
+            <ntech-button attrclass="btn btn-primary" label="Update" (click)="updatePages()">
+            </ntech-button>
+        </div>
+        <ntech-button attrclass="btn btn-primary" label="Cancel" (click)="d('Cross click')"></ntech-button>
+    </div>
+
+
+
+    <!-- <div class="modal-footer">
+        <ntech-button attrclass="btn btn-primary" [label]="btnName" (click)="savePages()"></ntech-button>
+        <ntech-button attrclass="btn btn-primary" label="Cancle" (click)="d('Cross click')"></ntech-button>
+    </div> -->
+</ng-template>

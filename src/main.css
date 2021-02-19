@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap');
+
+*{
+    box-sizing: border-box;
+    font-family: 'Montserrat',sans-serif;
+}
+
+body{
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+    background-color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+}
+
+.container{
+    max-width: 400px;
+    width: 100%;
+    background-color: #eee;
+    box-shadow: 
+        -2px -2px 6px 2px #fff,
+         2px 2px 6px 2px #c4c4c4;
+    border-radius: 10px;
+    animation: animate 1.5s ease;
+}
+    .form
+        
+        h1{
+            text-align: center;
+            color: #b2c2c2;
+            margin-top: 0;
+            font-weight: 800;
+            font-size: 1.8rem;
+            margin-bottom: 1.75rem;
+        }
+        .form-control{
+            position: relative;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+                font-weight: 700;
+                color: #b2c2c2;
+                display: block;
+                margin-bottom: 0.25rem;
+                display: block;
+                width: 100%;
+                border: none;
+                appearance: none;
+                outline: none;
+                background: none;
+                color: #aaa;
+                padding: 1rem;
+                border-radius: 5px;
+                transition: 0.25s ease all;
+                box-shadow: 
+                inset -4px -4px 10px 4px #fff,
+                inset 4px 4px 10px 4px #c4c4c4;
+            
+                    color: #aaa; 
+                
+                
+                box-shadow: 
+                    inset -1px -1px 3px 1px #fff,
+                    inset 1px 1px 3px 1px #c4c4c4;
+                    
+        
+            }
+            small{
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                font-size: 0.8rem;
+                display: none;
+                font-weight: 600;
+            }
+        
+        .form-control.error small{
+            display: block;
+            color: #f00;
+        }
+        button{
+            color: #4e38ca;
+            width: 100%;
+            outline: none;
+            cursor: pointer;
+            border: 3px solid transparent;
+            border-radius: 5px;
+            padding: 0.6rem 1rem;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: -4px -4px 13px 4px #fff,
+                        4px 4px 13px 4px #c4c4c4;
+            transition: 0.25s ease all;
+            margin-top: 0.75rem;
+           
+                box-shadow: -4px -4px 13px 4px #fff,
+                4px 4px 13px 4px #c4c4c4;
+            
+            
+                box-shadow: -3px -3px 8px 3px #fff,
+                3px 3px 8px 3px #c4c4c4;
+           
+        }
+    
+
+
+@keyframes animate {
+    from{
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}

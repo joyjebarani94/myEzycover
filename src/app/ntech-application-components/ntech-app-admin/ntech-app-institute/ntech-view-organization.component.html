@@ -1,0 +1,241 @@
+<nav>
+    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-bas-tab" data-toggle="tab" href="#nav-bas" role="tab"
+            aria-controls="nav-bas" aria-selected="true"><b>Organization Profile</b></a>
+        <a class="nav-item nav-link" id="nav-hierarchy-tab" data-toggle="tab" href="#nav-hierarchy" role="tab"
+            aria-controls="nav-hierarchy" aria-selected="false"><b>Hierarchy</b></a>
+        <a class="nav-item nav-link" id="nav-api-tab" data-toggle="tab" href="#nav-api" role="tab"
+            aria-controls="nav-api" aria-selected="false"><b>API Details</b></a>
+    </div>
+</nav>
+
+<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-bas" role="tabpanel" aria-labelledby="nav-home-tab">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <ntech-selectbox mandatory="true" label="Organization Type" ntechkey="NT003"
+                                    #dataval="ngModel" [(ngModel)]="dataVal" (change)="sample()"></ntech-selectbox>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-12">
+                                <ntech-textbox mandatory="false" label="Organization Name" attrclass="form-control"
+                                    name="orgname" disabled="false" placeholder="Enter Organization Name">
+                                </ntech-textbox>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-12">
+                                <ntech-textbox mandatory="false" label="User Name" attrclass="form-control"
+                                    name="orgname" disabled="false" placeholder="Enter Organization Name">
+                                </ntech-textbox>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-12">
+                                <ntech-textbox mandatory="false" label="Password" attrclass="form-control"
+                                    name="orgname" disabled="false" placeholder="Enter Organization Name">
+                                </ntech-textbox>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-12">
+                                <ntech-textbox mandatory="false" label="Confirm Password" attrclass="form-control"
+                                    name="orgname" disabled="false" placeholder="Enter Organization Name">
+                                </ntech-textbox>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-12">
+                                <ntech-textbox mandatory="false" label="Web Address" attrclass="form-control"
+                                    name="orgname" disabled="false" placeholder="Enter Organization Name">
+                                </ntech-textbox>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="card">
+                            <div class="card-header">
+                                Contech Person 1 Details
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <ntech-textbox mandatory="false" label="Name" attrclass="form-control"
+                                            name="orgname" disabled="false" placeholder="Enter Organization Name">
+                                        </ntech-textbox>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <ntech-selectbox mandatory="true" label="Designation" ntechkey="NT004"
+                                            #dataval="ngModel" [(ngModel)]="dataVal" (change)="sample()">
+                                        </ntech-selectbox>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card">
+                            <div class="card-header">
+                                Contech Person 2 Details
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <ntech-textbox mandatory="false" label="Name" attrclass="form-control"
+                                            name="orgname" disabled="false" placeholder="Enter Organization Name">
+                                        </ntech-textbox>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <ntech-selectbox mandatory="true" label="Designation" ntechkey="NT004"
+                                            #dataval="ngModel" [(ngModel)]="dataVal" (change)="sample()">
+                                        </ntech-selectbox>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-12">
+                                <ntech-textarea mandatory="false" label="Organization Address" attrclass="form-control"
+                                    name="orgname" disabled="false" placeholder="Enter Organization Name">
+                                </ntech-textarea>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-12">
+                                <ntech-textbox mandatory="false" label="City" attrclass="form-control" name="orgname"
+                                    disabled="false" placeholder="Enter Organization Name">
+                                </ntech-textbox>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-12">
+                                <ntech-selectbox mandatory="true" label="State" ntechkey="NT005" #dataval="ngModel"
+                                    [(ngModel)]="dataVal" (change)="sample()"></ntech-selectbox>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-12">
+                                <ntech-textbox mandatory="false" label="PinCode" attrclass="form-control" name="orgname"
+                                    disabled="false" placeholder="Enter Organization Name">
+                                </ntech-textbox>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-12">
+                                <ntech-lable label="Select Logo"  mandatory="true" ></ntech-lable>
+                                    <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose Image file</label>
+                                     </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-12">
+                                <ntech-textarea mandatory="false" label="Some Words About ePariksha"
+                                    attrclass="form-control" name="orgname" disabled="false"
+                                    placeholder="Enter Organization Name">
+                                </ntech-textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1">
+                <ntech-checkbox mandatory="false" label="" attrclass="form-check-input" name="orgname" disabled="false">
+                </ntech-checkbox>
+            </div>
+            <div class="col-11">
+                <p style="align-items: left">Terms and Conditions agreements act as a legal contract between you (the
+                    company) who has the website or mobile app and the user who access your website and mobile app.
+                    Having a Terms and Conditions agreement is completely optional. No laws require you to have one. Not
+                    even the super-strict and wide-reaching General Data Protection Regulation (GDPR).
+                    It's up to you to set the rules and guidelines that the user must agree to. You can think of your
+                    Terms and Conditions agreement as the legal agreement where you maintain your rights to exclude
+                    users from your app in the event that they abuse your app, where you maintain your legal rights
+                    against potential app abusers, and so on.
+                    Terms and Conditions are also known as Terms of Service or Terms of Use.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1">
+
+            </div>
+            <div class="col-sm-1">
+                <ntech-button attrclass="btn btn-primary" label="Save" (click)="ntechSignin()"></ntech-button>
+            </div>
+            <div class="col-sm-1">
+                <ntech-button attrclass="btn btn-primary" label="Cancle" (click)="ntechSignin()"></ntech-button>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="nav-hierarchy" role="tabpanel" aria-labelledby="nav-hierarchy-tab">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <ntech-lable label="Sample Mail Branch"></ntech-lable>
+                                <ntech-lable label="Status : Active"></ntech-lable>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <ntech-lable label="Branch Required"></ntech-lable>
+                                    </div>
+                                    <div class="col-1">
+                                        <div class="custom-control custom-switch">
+                                            <input type="checkbox" class="custom-control-input" id="switch1">
+                                            <label class="custom-control-label" for="switch1"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                hi
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="nav-api" role="tabpanel" aria-labelledby="nav-api-tab">
+        API
+    </div>
+</div>

@@ -1,0 +1,209 @@
+<div class="container">
+    <div class="row">
+        <div class="col-9">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-5">
+                            <ntech-selectbox mandatory="true" label="Filter Type" ntechkey="N0005"
+                                [(ngModel)]="filtertype" (change)="getOrglist()">
+                            </ntech-selectbox>
+                        </div>
+                        <div class="col-4">
+                            <div class="row">
+                                <div class="col-12"> &nbsp; </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <ntech-button attrclass="btn btn-primary" label="Create New Organization"
+                                        (click)="openNewModel(content)">
+                                    </ntech-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>
+</div>
+
+<br>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div>
+                            <ntech-lable label="Organization List" mandatory="false"></ntech-lable>
+                        </div>
+                        <div *ngIf="ntechorganizationmodel.length == 0">
+                            <div style="align-content: center;">
+                                <ntech-lable align="center" color="red" label="No data found" mandatory="false">
+                                </ntech-lable>
+                            </div>
+                        </div>
+                        <div *ngIf="ntechorganizationmodel.length > 0">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Organization Name</th>
+                                        <th>Org Code</th>
+                                        <th>Org Level</th>
+                                        <th>Org email</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of ntechorganizationmodel;  let i=index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{item.ntechorganizationmaintanace.ntOrgName}}</td>
+                                        <td>{{item.ntechorganizationmaintanace.ntOrgCode}}</td>
+                                        <td>{{item.ntechorganizationmaintanace.ntOrgLevel}}</td>
+                                        <td>{{item.ntechorganizationmaintanace.ntOrgEmail}}</td>
+                                        <td>
+                                            <div [ngSwitch]="item.ntechorganizationmaintanace.ntOrgStatus">
+                                                <div *ngSwitchCase=" '1' ">Active</div>
+                                                <div *ngSwitchCase=" '2' ">In-Active</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <i class="fa fa-eye" ></i>
+                                            &nbsp;
+                                            <i class="fa fa-pencil" (click)="openEditModel(content,item,i)"></i>
+                                            &nbsp;
+                                            <i class="fa fa-trash" (click)="deleteRecord(item)"></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Organization Maintanace</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-12">
+                <ntech-textbox mandatory="true" label="Organization Name" attrclass="form-control" name="ntCdvValue"
+                    disabled="false" placeholder="Enter Organization Name" [(ngModel)]="ntechorg.ntOrgName">
+                </ntech-textbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ntech-selectbox mandatory="true" label="Organization Level" ntechkey="N0007" [(ngModel)]="ntechorg.ntOrgLevel">
+                </ntech-selectbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ntech-textbox mandatory="true" label="Organization Mobile Number" attrclass="form-control" name="ntCdvKeyId"
+                    disabled="false" placeholder="Enter Organization Mobile Number" [(ngModel)]="ntechorg.ntOrgMobile">
+                </ntech-textbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ntech-textbox mandatory="true"  label="Organization Phone Number" attrclass="form-control" name="ntCdvKeyId"
+                    disabled="false" placeholder="Enter Organization Phone Number" [(ngModel)]="ntechorg.ntOrgPhone">
+                </ntech-textbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ntech-textbox mandatory="true" label="Organization Email" attrclass="form-control" name="ntCdvKeyId"
+                    disabled="false" placeholder="Enter Organization Email" [(ngModel)]="ntechorg.ntOrgEmail">
+                </ntech-textbox>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header"><h5>Adddress</h5></div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <ntech-textbox mandatory="false" label="Flat No."
+                                    attrclass="form-control" name="" disabled="false"
+                                    placeholder="Enter Pin Code" [(ngModel)]="ntaddress.ntAddDoorno">
+                                </ntech-textbox>
+                            </div>
+                            <div class="col-6">
+                                <ntech-textbox mandatory="false" label="Street Name"
+                                    attrclass="form-control" name="Flat No." disabled="false"
+                                    placeholder="Enter Pin Code" [(ngModel)]="ntaddress.ntAddStreet">
+                                </ntech-textbox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <ntech-textbox mandatory="false" label="Adition Info" attrclass="form-control"
+                                    name="orgname" disabled="false" placeholder="Enter City" [(ngModel)]="ntaddress.ntAddUnstructdata">
+                                </ntech-textbox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <ntech-textbox mandatory="false" label="Taluk Name"
+                                    attrclass="form-control" name="" disabled="false"
+                                    placeholder="Enter Pin Code" [(ngModel)]="ntaddress.ntAddTaluk">
+                                </ntech-textbox>
+                            </div>
+                            <div class="col-6">
+                                <ntech-textbox mandatory="false" label="District Name"
+                                    attrclass="form-control" name="Flat No." disabled="false"
+                                    placeholder="Enter Pin Code" [(ngModel)]="ntaddress.ntAddDistrict">
+                                </ntech-textbox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <ntech-selectbox mandatory="true" label="State" ntechkey="N0006" [(ngModel)]="ntaddress.ntAddState">
+                                </ntech-selectbox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <ntech-textbox mandatory="false"  label="Pin Code"
+                                    attrclass="form-control" name="orgname" disabled="false"
+                                    placeholder="Enter Pin Code" [(ngModel)]="ntaddress.ntAddPincode">
+                                </ntech-textbox>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <div *ngIf="action == 'N' ">
+            <ntech-button attrclass="btn btn-primary" label="Save" (click)="saveOraganization()">
+            </ntech-button>
+        </div>
+        <div *ngIf="action == 'U' ">
+            <ntech-button attrclass="btn btn-primary" label="Update" (click)="updateOraganization()">
+            </ntech-button>
+        </div>
+        <ntech-button attrclass="btn btn-primary" label="Cancel" (click)="d('Cross click')"></ntech-button>
+    </div>
+    <!-- <div class="modal-footer">
+        <ntech-button attrclass="btn btn-primary" [label]="btnName" (click)="saveOraganization()"></ntech-button>
+        <ntech-button attrclass="btn btn-primary" label="Cancle" (click)="d('Cross click')"></ntech-button>
+    </div> -->
+</ng-template>

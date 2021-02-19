@@ -1,0 +1,35 @@
+<div>
+        <ntech-lable label={{inputLabel}} mandatory={{mandatorysymb}}></ntech-lable>
+</div>
+<div *ngIf=" validationtype == 'number' ">
+        <input class="form-control" ntech-numberonly type="text" [(ngModel)]="inputvalue" [disabled]="disabled"
+                (blur)="onBlur()" (focus)="onFocus()" (keydown)="onKeyDown()" (keyup)="onKeyUp()"
+                [placeholder]="placeholder" #refranceValue />
+</div>
+<div *ngIf=" validationtype == 'alphabets' ">
+        <input class="form-control" ntech-alphabetsonly type="text" [(ngModel)]="inputvalue" [disabled]="disabled"
+                (blur)="onBlur()" (focus)="onFocus()" (keydown)="onKeyDown()" (keyup)="onKeyUp()"
+                [placeholder]="placeholder" #refranceValue />
+</div>
+<div *ngIf=" validationtype == 'nospecialch' ">
+        <input class="form-control" ntech-nospecialch type="text" [(ngModel)]="inputvalue" [disabled]="disabled"
+                (blur)="onBlur()" (focus)="onFocus()" (keydown)="onKeyDown()" (keyup)="onKeyUp()"
+                [placeholder]="placeholder" #refranceValue />
+</div>
+<div *ngIf=" validationtype == '' || validationtype == null ">
+        <input class="form-control" type="text" [(ngModel)]="inputvalue" [disabled]="disabled" (blur)="onBlur()"
+                (focus)="onFocus()" (keydown)="onKeyDown()" (keyup)="onKeyUp()" [placeholder]="placeholder"
+                #refranceValue />
+</div>
+
+
+
+
+
+<!-- 
+          <div class="form-group"><label>Mobile No.</label>
+                  <div class="input-group" style="width: 99%;">
+                  <input class="form-control" placeholder="" value="9442049945" type="text" >
+                                  <span class="input-group-addon"><i class="fa fa-phone relative1"></i></span>
+          </div> 
+  -->

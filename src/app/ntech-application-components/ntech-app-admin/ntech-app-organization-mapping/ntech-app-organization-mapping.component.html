@@ -1,0 +1,105 @@
+<div class="container">
+    <div class="row">
+        <div class="col-9">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-5">
+                            <ntech-selectbox mandatory="true" label="Organization Structure" ntechkey="N0007"
+                                [(ngModel)]="filtertype" (change)="getOrgbytype()">
+                            </ntech-selectbox>
+                        </div>
+                        <div class="col-4">
+                             &nbsp; 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-3">
+                        &nbsp;
+                    </div>
+                    <div class="col-3">
+                        &nbsp;
+                    </div>
+                    <div class="col-3">
+                        <ntech-lable label="Unmaped Count ( {{unmapCount}} )" color="red" mandatory="false">
+                        </ntech-lable>
+                    </div>
+                    <div class="col-3">
+                        <ntech-button attrclass="btn btn-primary" [disabled]="btnStatus" label="Add"
+                            (click)="openNewModel(content)">
+                        </ntech-button>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-5">
+                        <select class="form-control" [(ngModel)]="curntParntCode" multiple="multiple">
+                            <option (click)="allocateData(item.ntOrgSno)" [value]="item.ntOrgSno"
+                                *ngFor="let item of ntechorglist"> {{item.ntOrgCode }} - {{ item.ntOrgName}}
+                        </select>
+                    </div>
+                    <div class="col-1">&nbsp;</div>
+                    <div class="col-5">
+                        <select class="form-control" multiple="multiple">
+                            <option [value]="item.ntOrgCode" *ngFor="let item of listview2"> {{item.ntOrgCode }} - {{item.ntOrgName}}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Organization Detail</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-12">
+                <ntech-lable label="Parent Organization : {{curntParntCode}}" color="red" mandatory="false">
+                </ntech-lable>
+            </div>
+        </div>
+        <br>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Org Code</th>
+                        <th>Org Name</th>
+                        <th>Org Level</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of listUnmap; let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{item.ntOrgCode}}</td>
+                        <td>{{item.ntOrgName}}</td>
+                        <td>{{item.ntOrgLevel}}</td>
+                        <td><i class="fa fa-plus-circle fa-lg" (click)="updateOraganization(item)"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <ntech-button attrclass="btn btn-primary" label="Cancle" (click)="d('Cross click')"></ntech-button>
+    </div>
+</ng-template>

@@ -1,0 +1,22 @@
+<div>Welcome</div>
+<ntech-button attrclass="btn btn-primary btn-block" label="LogIn" (click)="goLogin()"></ntech-button><br>
+<div>
+    <label>phone_number</label>
+<international-phone-number placeholder="Enter phone number" [maxlength]="20"
+		[defaultCountry]="'IN'" [required]="true"  name="phone_number">
+	</international-phone-number>
+</div>
+<div>
+    <!-- translation: translation pipe -->
+    <h1>{{ 'demo.title' | translate }}</h1>
+    
+
+    <!-- translation: directive (key as attribute)-->
+    <p [translate]="'demo.text'"></p>
+
+    <!-- translation: directive (key as content of element) -->
+    <p translate>demo.text</p>
+</div>
+<button (click)="useLanguage('en')">en</button>
+<button (click)="useLanguage('de')">de</button>
+<button (click)="useLanguage('hi')">hi</button>

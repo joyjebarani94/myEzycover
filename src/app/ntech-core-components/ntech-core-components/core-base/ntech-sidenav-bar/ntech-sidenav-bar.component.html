@@ -1,0 +1,54 @@
+<!-- <div class="container-fluid margtopcont1">
+    <div class="primary-nav">
+        
+        <nav role="navigation" [class]="varthemecolor">
+
+            <div class="overflow-container">
+                <ul class="menu-dropdown" *ngFor="let parlist of var_ntech_pages_p; let i = index">     
+
+                    <li [id]="'menu-hasdropdown'+i" (click)="sum(i)" >
+                        <a >{{parlist.nt_pagename}}
+                            <span class="downarrow ">
+                                <i class="fa fa-caret-down"></i>
+                            </span>
+                        </a>
+                        <span class="icon">
+                            <i class="fa fa-tags"></i>
+                        </span>
+                        <label title="toggle menu"> </label>
+
+                        <ul class="sub-menu-dropdown" *ngFor="let list of valuMap.get(parlist.nt_sno)">
+                            <li class="ml-4">
+                                <a href="search-Disbursement.html">
+                                    <i class="fa fa-angle-double-right"></i>&nbsp;&nbsp;{{list.nt_pagename}}</a>
+                                <span class="icon">
+                                    <i class="fa fa-hand-o-left"></i>
+                                </span>
+                            </li>                          
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div> -->
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <h4><i class="fa fa-globe"></i> Ntech Software</h4>
+        <strong>e</strong>
+    </div>
+
+    <ul class="list-unstyled components">
+        <li class="active" *ngFor="let parlist of var_ntech_pages_p; let i = index">
+            <a href="#homeSubmenu_{{i}}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <i class="{{parlist.ntPageIcon}}"></i> {{parlist.ntPagename}}
+            </a>
+            <ul class="collapse list-unstyled" id="homeSubmenu_{{i}}">
+                <li *ngFor="let list of valuMap.get(parlist.ntSno)">
+                    <a routerLink={{list.ntRouterName}} routerLinkActive="active">
+                        <i class="{{list.ntPageIcon}}"> </i>  {{list.ntPagename}}</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>

@@ -1,0 +1,126 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <main class="login">
+                <!-- Carousel -->
+                <div class="row">
+                    <div class="col-md-8">
+                        <section class="login__left">
+                            <div id="loginCarousel" class="carousel slide" data-ride="carousel" data-interval="3000" data-pause="hover">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#loginCarousel" data-slide-to="0" class="active"></li>
+                                    <li data-target="#loginCarousel" data-slide-to="1"></li>
+                                    <li data-target="#loginCarousel" data-slide-to="2"></li>
+                                </ol>
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="carousel-item active">
+                                        <div class="background-overlay"></div>
+                                        <div class="slide" style="background-image:url('https://cdn.pixabay.com/photo/2016/11/29/06/16/kindle-1867751_960_720.jpg');background-size:cover;"> </div>
+                                        <div class="carousel-caption">
+                                            <h1 class="slide__title">Activity</h1>
+                                            <p class="slide__text">The quality or state of being active.</p>
+                                            <a href="#" class="slide__button">Read More</a>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="background-overlay"></div>
+                                        <div class="slide" style="background-image:url('https://cdn.pixabay.com/photo/2018/05/18/03/16/online-3410266_960_720.jpg');background-size:cover;"></div>
+                                        <div class="carousel-caption">
+                                            <h1 class="slide__title">Conversation</h1>
+                                            <p class="slide__text">Oral exchange of sentiments, observations, opinions, or ideas </p>
+                                            <a href="#" class="slide__button">Read More</a>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <div class="background-overlay"></div>
+                                        <div class="slide" style="background-image:url('https://images.pexels.com/photos/7376/startup-photos.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');background-size:cover;"></div>
+                                        <div class="carousel-caption">
+                                            <h1 class="slide__title">Assignment</h1>
+                                            <p class="slide__text">A specified task or amount of work assigned or undertaken.</p>
+                                            <a href="#" class="slide__button">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Left and right controls -->
+                                <a class="carousel-control-prev" href="#loginCarousel" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#loginCarousel" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-md-4">
+                        <!-- Login -->
+                        <section class="login__right">
+                            <div class="panel">
+                                <article class="panel__header">
+                                    <div class="header__brand">
+                                        <a class="header__logo" href="#">
+                                            <svg id="brand" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
+                                            <path class="icon-primary-color" d="M22,9V7h-2V5c0-1.1-0.9-2-2-2H4C2.9,3,2,3.9,2,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2v-2h2v-2h-2v-2h2v-2h-2V9H22z M18,19
+                                                H4V5h14V19z M6,13h5v4H6V13z M12,7h4v3h-4V7z M6,7h5v5H6V7z M12,11h4v6h-4V11z"/>
+                                            <path fill="none" d="M0,0h24v24H0V0z M0,0h24v24H0V0z"/>
+                                            </svg>
+                                        </a>
+                                        <h5 class="header__text">nBazaar</h5>
+                                    </div>
+                                </article>
+                                <form name="form1" class="panel__body">
+
+
+                                    <div class="sign">
+                                        <!-- <p class="sign__input">Sign in to continue to Panel</p> -->
+
+                                        <div class="col-md-12">
+                                            <ntech-textbox mandatory="false" validationtype = "nospecialch"  attrclass="form-control" label="Username" [(ngModel)]="mod_ntech_users.ntUserId" name="externalVal" disabled="false" placeholder="Username">
+                                            </ntech-textbox>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <ntech-countrycode mandatory="false"   attrclass = "form-control"  [(ngModel)]="mod_ntech_users.ntCountrycode" name ="countrycode"   lebel="country code" placeholder="countrycode"></ntech-countrycode>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <ntech-passwordbox attrclass="form-control" label="Password"  [(ngModel)]="mod_ntech_users.ntUserPwd" name="externalVal" mandatory="false" disabled="false" placeholder="Password">
+                                            </ntech-passwordbox>
+                                        </div>{{mod_ntech_users.ntUserPwd}}
+                                    </div>
+                                    <div class="option">
+                                        <div class="option__item">                                        
+                                            <div class="form-group">
+
+                                                <ntech-button attrclass="btn btn-block  btn-primary" label="LogIn" (click)="ntechSignin()"></ntech-button>
+                                                
+                                                <!-- <ntech-button attrclass="btn btn-primary btn-block" label="SignUp" (click)="ntechSignup()"></ntech-button> -->
+                                            </div>    
+                                                    <div class="pull-right">
+                                                        <a href="#" class="link-text">Forgot your password?</a>
+                                                    </div>
+                                                
+                                        </div>
+                                    </div>
+                                    
+                                </form>
+
+                                <!-- <article class="panel__footer">
+                                    <p class="small">©2019 Panel</p>
+                                    <ul class="list-unstyle list-inline">
+                                        <li class="list-inline-item small"><a href="#">Privacy Policy</a></li>
+                                        <li class="list-inline-item small"><a href="#">Terms</a></li>
+                                        <li class="list-inline-item small"><a href="#">Help</a></li>
+                                    </ul>
+
+                                </article> -->
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </main>
+
+        </div>
+    </div>
+</div>

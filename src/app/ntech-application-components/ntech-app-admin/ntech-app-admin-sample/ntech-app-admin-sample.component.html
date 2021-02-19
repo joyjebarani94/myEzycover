@@ -1,0 +1,26 @@
+<!-- <ntech-checkbox ntechkey="NT001"></ntech-checkbox>
+<ntech-selectbox value="S" ntechkey="NT001"></ntech-selectbox>
+ -->
+
+<div class="row">
+    <div class="col-sm-12">
+        <ntech-textbox mandatory="false" label="Exam Category Name" attrclass="form-control" [(ngModel)]="external" name="externalVal" disabled="false" attrplaceholder=""></ntech-textbox>
+    </div>
+
+    <div class="col-sm-12">
+        <ntech-textbox mandatory="true" attrclass="form-control" label="Exam Category Description" [(ngModel)]="dataVal" #loginUserID name="loginUserID" id="loginUserID" mandatory="true" disabled="false" attrplaceholder="Nothing" (blur)="sample()"></ntech-textbox>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <ntech-selectbox ntechkey="NT002" #dataval="ngModel" [(ngModel)]="dataVal" (change)="sample()"></ntech-selectbox>
+    </div>
+
+    <div class="col-sm-6">
+        <!-- <ntech-calendar></ntech-calendar> -->
+    </div>
+
+    <ntech-button class="btn btn-default" label="LogIn" (click)="ntechSignin()"></ntech-button>
+</div>

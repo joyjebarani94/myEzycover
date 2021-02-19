@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-12">       
+        <ntech-lable label={{inputLabel}} mandatory={{mandatorysymb}}></ntech-lable>
+    </div>
+</div>
+<div class="row">   
+    <div class="col-12">       
+    <select name={{name}} class="form-control" [(ngModel)]="inputvalue" [disabled]="disabled" >
+        <option value="S" selected>Select</option>
+        <option [value]="item.ntCdvValue" *ngFor="let item of confValue"> {{item.ntCdvDesc}}
+    </select>
+    </div>
+</div>
+

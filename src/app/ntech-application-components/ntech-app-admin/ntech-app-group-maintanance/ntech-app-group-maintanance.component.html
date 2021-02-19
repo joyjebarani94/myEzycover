@@ -1,0 +1,128 @@
+<div class="container">
+    <div class="row">
+        <div class="col-9">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-5">
+                            <ntech-selectbox mandatory="true" label="Filter Type" ntechkey="N0005"
+                                [(ngModel)]="filtertype" (change)="getGrouplist()">
+                            </ntech-selectbox>
+                        </div>
+                        <div class="col-4">
+                            <div class="row">
+                                <div class="col-12"> &nbsp; </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <ntech-button attrclass="btn btn-primary" label="Create New Group"
+                                        (click)="openNewModel(content)">
+                                    </ntech-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div>
+                            <ntech-lable label="Groups " mandatory="false"></ntech-lable>
+                        </div>
+                        <div *ngIf="listntechgroup.length == 0">
+                            <div style="align-content: center;">
+                                <ntech-lable align="center" color="red" label="No data found" mandatory="false">
+                                </ntech-lable>
+                            </div>
+                        </div>
+                        <div *ngIf="listntechgroup.length > 0">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Group Code</th>
+                                        <th>Group Name</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of listntechgroup;  let i=index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{item.ntGrpCode}}</td>
+                                        <td>{{item.ntGrpName}}</td>
+                                        <td>
+                                            <div [ngSwitch]="item.ntGrpStatus">
+                                                <div *ngSwitchCase=" '1' ">Active</div>
+                                                <div *ngSwitchCase=" '2' ">In-Active</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <i class="fa fa-eye" ></i>
+                                            &nbsp;
+                                            <i class="fa fa-pencil" (click)="openEditModel(content,item,i)"></i>
+                                            &nbsp;
+                                            <i class="fa fa-trash" (click)="deleteRecord(item)"></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Group Creation</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-12">
+                <ntech-textbox mandatory="true" label="Group Name" attrclass="form-control" name="ntGrpName"
+                    disabled="false" placeholder="Enter Middle Name" [(ngModel)]="ntechgroup.ntGrpName">
+                </ntech-textbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ntech-textbox mandatory="true" label="Group Code" attrclass="form-control" name="ntCdvKeyId"
+                    disabled="true" placeholder="Enter Middle Name" [(ngModel)]="ntechgroup.ntGrpCode">
+                </ntech-textbox>
+            </div>
+        </div>        
+    </div>
+    <div class="modal-footer">
+        <div *ngIf="action == 'N' ">
+            <ntech-button attrclass="btn btn-primary" label="Save" (click)="saveGroup()">
+            </ntech-button>
+        </div>
+        <div *ngIf="action == 'U' ">
+            <ntech-button attrclass="btn btn-primary" label="Update" (click)="updateOraganization()">
+            </ntech-button>
+        </div>
+        <ntech-button attrclass="btn btn-primary" label="Cancel" (click)="d('Cross click')"></ntech-button>
+    </div>
+
+
+
+    <!-- <div class="modal-footer">
+        <ntech-button attrclass="btn btn-primary" [label]="btnName" (click)="saveGroup()"></ntech-button>
+        <ntech-button attrclass="btn btn-primary" label="Cancle" (click)="d('Cross click')"></ntech-button>
+    </div> -->
+</ng-template>

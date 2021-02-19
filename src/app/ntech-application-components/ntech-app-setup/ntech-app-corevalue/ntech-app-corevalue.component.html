@@ -1,0 +1,216 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-10">
+                            <div>
+                                <ntech-lable label="Config Name" mandatory="true"></ntech-lable>
+                            </div>
+                            <div class="row">
+                                <div class="col-10">
+                                    <select class="form-control" [(ngModel)]="inputvalue" (change)="getValuebyId()">
+                                        <option value="S" selected>Select</option>
+                                        <option [value]="item[0]" *ngFor="let item of coreconfig1"> {{item[0]}} - ( {{item[1]}} )
+                                    </select>
+                                </div>
+                                <div class="col-2">
+                                    <ntech-button attrclass="btn btn-primary" label="New"
+                                        (click)="openNewModel(content1)"></ntech-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div>
+                            <ntech-lable label="Config Values" mandatory="false"></ntech-lable>
+                        </div>
+                        <div *ngIf="coreconfig2.length == 0">
+                            <div style="align-content: center;">
+                                <ntech-lable align="center" color="red" label="No data found" mandatory="false">
+                                </ntech-lable>
+                            </div>
+                        </div>
+                        <div *ngIf="coreconfig2.length > 0">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Value</th>
+                                        <th>Decscription</th>
+                                        <th>Type</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of coreconfig2;  let i=index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{item.ntCdvValue}}</td>
+                                        <td>{{item.ntCdvDesc}}</td>
+                                        <td>
+                                            <div [ngSwitch]="item.ntCdvType">
+                                                <div *ngSwitchCase=" '1' ">Web User</div>
+                                                <div *ngSwitchCase=" '2' ">Mobile User</div>
+                                                <div *ngSwitchCase=" '3' ">Both</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div [ngSwitch]="item.ntCdvActive">
+                                                <div *ngSwitchCase=" '1' ">Active</div>
+                                                <div *ngSwitchCase=" '2' ">In-Active</div>
+                                            </div>
+                                        </td>
+                                        <td>
+
+                                            <i class="fa fa-pencil" (click)="openEditModel(content,item,i)"></i>
+                                            &nbsp;
+                                            <i class="fa fa-trash" (click)="deleteRecord(item)"></i>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--
+        Model Block Codeing
+    -->
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Core Page Configuration</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-12">
+                <ntech-textbox mandatory="true" label="Value" attrclass="form-control" name="ntCdvValue"
+                    disabled="false" placeholder="Enter Middle Name" [(ngModel)]="currentRow.ntCdvValue">
+                </ntech-textbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ntech-textbox mandatory="true" label="Description" attrclass="form-control" name="ntCdvKeyId"
+                    disabled="false" placeholder="Enter Middle Name" [(ngModel)]="currentRow.ntCdvDesc">
+                </ntech-textbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ntech-selectbox name="{{indexId}}N0002{{currentRow.ntRowId}}" mandatory="true" label="Type"
+                    ntechkey="N0002" [(ngModel)]="currentRow.ntCdvType">
+                </ntech-selectbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ntech-selectbox name="{{indexId}}N0003{{currentRow.ntRowId}}" mandatory="true" label="Status"
+                    ntechkey="N0003" [(ngModel)]="currentRow.ntCdvActive">
+                </ntech-selectbox>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <ntech-button attrclass="btn btn-primary" label="Update" (click)="saveConfigValue(currentRow)"></ntech-button>
+        <ntech-button attrclass="btn btn-primary" label="Cancle" (click)="d('Cross click')"></ntech-button>
+    </div>
+</ng-template>
+
+<ng-template #content1 let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Core Page Configuration</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-10">
+                <div>
+                    <ntech-lable label="Config Name" mandatory="true"></ntech-lable>
+                </div>
+                <select class="form-control" [(ngModel)]="newinputvalue" (change)="checkconfigId()">
+                    <option value="N" selected>New</option>
+                    <option [value]="item[0]" *ngFor="let item of coreconfig1">  {{item[0]}} - ( {{item[1]}} )
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ntech-textbox mandatory="true" label="Config Key" attrclass="form-control" name="newntCdvKeyId"
+                    disabled="true" placeholder="Key" [(ngModel)]="currentRow1.ntCdvKeyId">
+                </ntech-textbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ntech-textbox mandatory="true" label="Link Key" attrclass="form-control" name="ntCdvLink"
+                    disabled="false" placeholder="Key" [(ngModel)]="currentRow1.ntCdvLink">
+                </ntech-textbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ntech-textbox mandatory="true" label="Config Key Name" attrclass="form-control" name="newntCdvKeyId"
+                    disabled="false" placeholder="Key" [(ngModel)]="currentRow1.ntCdvKeyName">
+                </ntech-textbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ntech-textbox mandatory="true" label="Value" attrclass="form-control" name="newntCdvValue"
+                    disabled="false" placeholder="Enter Middle Name" [(ngModel)]="currentRow1.ntCdvValue">
+                </ntech-textbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ntech-textbox mandatory="true" label="Description" attrclass="form-control" name="newntCdvKeyId"
+                    disabled="false" placeholder="Enter Middle Name" [(ngModel)]="currentRow1.ntCdvDesc">
+                </ntech-textbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ntech-selectbox name="newntCdvType" mandatory="true" label="Type" ntechkey="N0002"
+                    [(ngModel)]="currentRow1.ntCdvType">
+                </ntech-selectbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ntech-selectbox name="newntCdvActive" mandatory="true" label="Status" ntechkey="N0003"
+                    [(ngModel)]="currentRow1.ntCdvActive">
+                </ntech-selectbox>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <ntech-button attrclass="btn btn-primary" label="Save" (click)="saveConfigValue(currentRow1)"></ntech-button>
+        <ntech-button attrclass="btn btn-primary" label="Cancle" (click)="d('Cross click')"></ntech-button>
+    </div>
+</ng-template>

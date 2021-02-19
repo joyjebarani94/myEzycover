@@ -1,0 +1,150 @@
+<div class="container">
+    <div class="row">
+        <div class="col-9">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <ntech-selectbox mandatory="true" label="Industry" ntechkey="N0010" name="ntLdIndus"
+                                [(ngModel)]="ntechproduct.ntPrdIndCode" (change)="getValuebyIndus('N0010')">
+                            </ntech-selectbox>
+                        </div>
+                        <div class="col-6">
+                            <ntech-selectbox mandatory="true" label="Sub Industry" [ntechkey]="changecode"
+                                name="ntLdSubindus" [(ngModel)]="ntechproduct.ntPrdIndsubCode"
+                                (change)="getValuebySubInds()"> </ntech-selectbox>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+
+                        <div class="col-5">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ntech-lable label="Main Product " mandatory="false"></ntech-lable>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <select class="form-control" [(ngModel)]="filtervalue" (change)="getValuebyId()">
+                                        <option value="S" selected>Select</option>
+                                        <option [value]="item.ntPrdSno" *ngFor="let item of lstmainntechproduct">
+                                            {{item.ntPrdName}}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="row">
+                                <div class="col-12"> &nbsp; </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <ntech-button attrclass="btn btn-primary" label="Create Main Product"
+                                        (click)="openNewModel(content,'N')">
+                                    </ntech-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <ntech-lable label="Groups " mandatory="false"></ntech-lable>
+                            </div>
+                            <div class="col-6">
+                                <ng-template [ngIf]="filtervalue != 'S' ">
+                                    <ntech-button attrclass="btn btn-primary btn-sm" label="Create Sub Product"
+                                        (click)="openNewModel(content,'S')">
+                                    </ntech-button>
+                                </ng-template>
+                            </div>
+                        </div><br>
+                        <div *ngIf="lstsubntechproduct.length == 0">
+                            <div style="align-content: center;">
+                                <ntech-lable align="center" color="red" label="No data found" mandatory="false">
+                                </ntech-lable>
+                            </div>
+                        </div>
+                        <div *ngIf="lstsubntechproduct.length > 0">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Product Name</th>
+                                        <th>Industry Code</th>
+                                        <th>Sub-Industry Code</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of lstsubntechproduct;  let i=index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{item.ntPrdName}}</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>
+                                            <div [ngSwitch]="item.ntPrdStatus">
+                                                <div *ngSwitchCase=" '1' ">Active</div>
+                                                <div *ngSwitchCase=" '2' ">In-Active</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <i class="fa fa-eye"></i>
+                                            &nbsp;
+                                            <i class="fa fa-pencil" (click)="openEditModel(content,item,i)"></i>
+                                            &nbsp;
+                                            <i class="fa fa-trash" (click)="deleteRecord(item)"></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Product Creation</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-12">
+                <ntech-textbox mandatory="false" label="Product Name" attrclass="form-control" name="ntPrdName"
+                    disabled="false" placeholder="Enter Pin Code" [(ngModel)]="ntechproduct.ntPrdName">
+                </ntech-textbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ntech-selectbox name="ntPrdType" disabled="true" mandatory="true" label="Product Type" ntechkey="N0008"
+                    [(ngModel)]="ntechproduct.ntPrdType">
+                </ntech-selectbox>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <ntech-button attrclass="btn btn-primary" label="Save" (click)="saveProduct()"></ntech-button>
+        <ntech-button attrclass="btn btn-primary" label="Cancle" (click)="d('Cross click')"></ntech-button>
+    </div>
+</ng-template>

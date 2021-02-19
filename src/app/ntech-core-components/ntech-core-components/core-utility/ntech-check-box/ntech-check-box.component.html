@@ -1,0 +1,7 @@
+<div class="form-check">
+
+        <ntech-lable label={{inputLabel}} mandatory={{mandatorysymb}}></ntech-lable> &nbsp; <input class="form-control"
+                type="checkbox" [(ngModel)]="inputvalue" [disabled]="disabled" (blur)="onBlur()" (focus)="onFocus()"
+                (keydown)="onKeyDown()" (keyup)="onKeyUp()" [placeholder]="placeholder" #refranceValue />
+
+</div>

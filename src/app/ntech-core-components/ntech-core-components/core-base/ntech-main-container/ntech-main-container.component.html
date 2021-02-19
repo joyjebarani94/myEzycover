@@ -1,0 +1,15 @@
+<div class="container">
+        
+        <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a (click)="getHome()">Home</a></li>
+                  <li class="breadcrumb-item"><a href="#">Library</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Data</li>
+                </ol>
+        </nav>
+        <div class="card bg-light">
+                <div class="card-body text-center">    
+                    <router-outlet></router-outlet>
+                </div>
+        </div>        
+</div>

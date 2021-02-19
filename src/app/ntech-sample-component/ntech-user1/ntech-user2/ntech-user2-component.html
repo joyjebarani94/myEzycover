@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h3>ONLINE MOTOR TAKAFUL INSURANCE SERVICES</h3>
+                </div>
+                <div class="card-header">
+                    <h4><strong>Get your best quotes here:</strong></h4>
+                    <h4><u><strong>Vehicle &amp; Owner Information</strong></u></h4>
+                
+                </div>
+                
+                <div class="card-body">
+                    <form class="form" #vehicleForm="ngForm" 
+                         novalidate>
+                        <fieldset ngModelGroup="name">
+                        <div class="form-group">
+                            <label >Private Vehicle</label>
+                            <select name="vehicle" class="form-control"  >
+                                <option *ngFor="let vehicle of privatevehicle" 
+                                [value]="vehicle">{{vehicle}}</option>
+                              </select>
+                            <div *ngIf="submitted && vehicleForm.vehicle.errors" class="invalid-feedback">
+                                <div *ngIf="vehicleForm.vehicle.errors.required">vehicle no is required</div>
+                            </div>
+                        </div>
+                        
+                    
+                        <div class="form-group">
+                            <label for="vehiclenumber">Vehicle Number</label>
+                            <input type="number" name="vehiclenumber" [(ngModel)]="vehiclenumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && vehicleForm.vehiclenumber.errors }" />
+                            <div *ngIf="submitted && vehicleForm.vehiclenumber.errors" class="invalid-feedback">
+                                <div *ngIf="vehicleForm.vehiclenumber.errors.required">Vehicle Number is required</div>
+                            </div>
+                        </div>
+                        
+                       
+                        <div class="form-group">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio"  [(ngModel)]="name" class="custom-control-input" id="customRadio1" name="name">
+                                <label class="custom-control-label" for="customRadio1">NRIC</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="customRadio2"  [(ngModel)]="name1" name="name">
+                                <label class="custom-control-label" for="customRadio2">Others</label>
+                            </div>      
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phonenumber">Phone Number</label>
+                            <input type="number" name="phonenumber" [(ngModel)]="phonenumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && vehicleForm.phonenumber.errors }" />
+                            <div *ngIf="submitted && vehicleForm.phonenumber.errors" class="invalid-feedback">
+                                <div *ngIf="vehicleForm.phonenumber.errors.required">Phone Number is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="postcode">Post Code</label>
+                            <input type="number"  name ="zipCode" (change)="zipCodeValidator()"  placeholder="Zip Code" minLength="5" maxLength="7"   class="form-control" [ngClass]="{ 'is-invalid': submitted && vehicleForm.zipCode.errors }" required/>
+                        </div>
+                        <div>
+                        <p>&nbsp;</p>
+                    <p>By clicking GET QUOTES bellow you agree to share your personal information or details to us. Your personal information is protected by <strong>PERSONAL DATA PROTECTION ACT (PDPA)</strong> by Bank Negara Malaysia.</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    </div>
+                        <div class="form-group">
+                            <button [disabled]="loading"  (click)="getquotes()" class="btn btn-primary">
+                                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1" ></span>
+                               GET QUOTES
+                            </button>
+                            <a routerLink="/login" class="btn btn-link">Cancel</a>
+                        </div>
+
+ 
+    

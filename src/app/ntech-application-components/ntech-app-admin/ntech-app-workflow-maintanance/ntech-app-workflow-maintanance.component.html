@@ -1,0 +1,165 @@
+<div class="container">
+    <div class="row">
+        <div class="col-9">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-5">
+                            <div>
+                                <ntech-lable label="Product" mandatory="true"></ntech-lable>
+                            </div>
+                            <select class="form-control" [(ngModel)]="filtervalue" (change)="getValueprd()">
+                                <option value="S" selected>Select</option>
+                                <option [value]="item.ntPrdSno" *ngFor="let item of lstmainntechproduct">
+                                    {{item.ntPrdName}}
+                            </select>
+                        </div>
+                        <div class="col-5">
+                            <div>
+                                <ntech-lable label="Sub Product" mandatory="true"></ntech-lable>
+                            </div>
+                            <select class="form-control" [(ngModel)]="filtervalue1" (change)="getValuebysubprd()">
+                                <option value="S" selected>Select</option>
+                                <option [value]="item.ntPrdSno" *ngFor="let item of lstsubntechproduct">
+                                    {{item.ntPrdName}}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6">
+                                <ntech-lable label="Workflow" mandatory="false"></ntech-lable>
+                            </div>
+                            <div class="col-6">
+                                <ng-template [ngIf]="filtervalue1 != 'S' ">
+                                    <ntech-button attrclass="btn btn-primary btn-sm" label="Create Flow"
+                                        (click)="openNewModel(content)">
+                                    </ntech-button>
+                                </ng-template>
+                            </div>
+                        </div><br>
+                        <div *ngIf="workflowmodel.length == 0">
+                            <div style="align-content: center;">
+                                <ntech-lable align="center" color="red" label="No data found" mandatory="false">
+                                </ntech-lable>
+                            </div>
+                        </div>
+                        <div *ngIf="workflowmodel.length > 0">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Flow Name</th>
+                                        <th>Group Code</th>
+                                        <th>Pages</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of workflowmodel;  let i=index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{item.ntechworkflow.ntWfName}}</td>
+                                        <td>{{item.ntechworkflow.ntGrpId}}</td>
+                                        <td>-</td>
+                                        <td>
+                                            <div [ngSwitch]="item.ntPrdStatus">
+                                                <div *ngSwitchCase=" '1' ">Active</div>
+                                                <div *ngSwitchCase=" '2' ">In-Active</div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <i class="fa fa-eye"></i>
+                                            &nbsp;
+                                            <i class="fa fa-pencil" (click)="openEditModel(content,item,i)"></i>
+                                            &nbsp;
+                                            <i class="fa fa-trash" (click)="deleteRecord(item)"></i>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Workflow Creation</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-12">
+                <ntech-textbox mandatory="true" label="Flow Name" attrclass="form-control" name="ntWfName"
+                    disabled="false" placeholder="Enter Flow Name" [(ngModel)]="ntechworkflow.ntWfName">
+                </ntech-textbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ntech-lable label="Group Name" mandatory="true"></ntech-lable>
+                <select class="form-control" name="ntGrpId" [(ngModel)]="ntechworkflow.ntGrpId">
+                    <option value="S" selected>Select</option>
+                    <option [value]="item.ntGrpCode" *ngFor="let item of listntechgroup"> {{item.ntGrpName}}
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ntech-selectbox name="ntWfAutoTransf" disabled="false" mandatory="true" label="Auto Tranfer"
+                    ntechkey="N0001" [(ngModel)]="ntechworkflow.ntWfAutoTransf">
+                </ntech-selectbox>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12">
+                <ntech-button attrclass="btn btn-primary" label="Select Pages" (click)="openPageModel(content1)"></ntech-button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <ntech-button attrclass="btn btn-primary" label="Save" (click)="saveWorkflow()"></ntech-button>
+        <ntech-button attrclass="btn btn-primary" label="Cancle" (click)="d('Cross click')"></ntech-button>
+    </div>
+</ng-template>
+
+
+
+<ng-template #content1 let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Page Selection</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row" *ngFor="let item of chdntechpages;  let i=index">
+            <div class="col-12">
+                <input type="checkbox" name="{{item.ntSno}}" value="{{item.ntSno}}" (change)="onCheckboxChange(item,$event)"> {{item.ntPagename}}
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+       <ntech-button attrclass="btn btn-primary" label="Save" (click)="d('Cross click')"></ntech-button>
+    </div>
+</ng-template>
